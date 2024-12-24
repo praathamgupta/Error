@@ -1,0 +1,98 @@
+/* App Container */
+
+
+/* Left Panel */
+.left-panel {
+  width: 65%; /* Adjust proportional width */
+  height: 100%; /* Full height of the viewport */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+/* Right Panel */
+.right-panel {
+  width: 35%; /* Adjust proportional width */
+  height: 100%; /* Full height of the viewport */
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+/* Rotating SVGs Container */
+.rotating-svgs-container {
+  position: relative;
+  width: 95%; /* Scale the width */
+  height: 95%; /* Scale the height to fit three cards */
+  max-height: 95vh; /* Ensure the container doesn’t exceed viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Clip overflowing content */
+}
+/* SVG Wrappers (Cards) */
+.svg-wrapper {
+  position: absolute;
+  width: 85%;
+  height: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(100%); /* Start below the viewport */
+  opacity: 0; /* Start invisible */
+}
+.svg-wrapper.active {
+  transform: translateY(0); /* Centered in the viewport */
+  opacity: 1;
+  z-index: 10; /* Bring to the front */
+}
+
+.svg-wrapper svg {
+  width: 100%; /* Reduce rectangle width inside each SVG */
+  height: 100%; /* Reduce rectangle height */
+  margin: auto;
+  display: block;
+}
+.svg-wrapper.active {
+  top: 0; /* Bring into view */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.svg-wrapper.inactive {
+  opacity: 0;
+  transform: translateY(-100%); /* Slide out upwards */
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease forwards;
+}
+
+.slide-out {
+  animation: slideOut 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+.svg-wrapper.active rect {
+  animation: rectSlideUp 0.5s ease forwards;
+}
